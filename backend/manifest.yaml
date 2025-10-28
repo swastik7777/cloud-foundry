@@ -5,6 +5,7 @@ applications:
     instances: 1
     buildpacks:
       - nodejs_buildpack
+    path: .
     env:
       PG_DBNAME: "AIVUqOCKqiBp"
       PG_USERNAME: "5d03ae00961f"
