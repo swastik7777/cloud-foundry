@@ -1,0 +1,17 @@
+{
+  "name": "cf-postgres-app",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "pg": "^8.11.1",
+    "sequelize": "^6.33.0"
+  },
+  "engines": {
+    "node": "22.x"
+  }
+}

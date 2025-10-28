@@ -1,0 +1,18 @@
+---
+applications:
+  - name: my-postgres-app
+    memory: 512M
+    instances: 1
+    buildpacks:
+      - nodejs_buildpack
+    env:
+      PG_DBNAME: "AIVUqOCKqiBp"
+      PG_USERNAME: "5d03ae00961f"
+      PG_PASSWORD: "4b3b145cd184b6664483c60d66"
+      PG_HOST: "postgres-306130c6-03ca-4274-86a1-0cbfb33553a8.cqryblsdrbcs.us-east-1.rds.amazonaws.com"
+      PG_PORT: "6308"
+      SSLROOTCERT: |
+        -----BEGIN CERTIFICATE-----
+        MIID/zCCAuegAwIBAgIRAPVSMfFitmM5PhmbaOFoGfUwDQYJKoZIhvcNAQELBQAw
+        ...
+        -----END CERTIFICATE-----
