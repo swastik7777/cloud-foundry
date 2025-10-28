@@ -4,6 +4,6 @@ applications:
     instances: 1
     buildpacks:
       - staticfile_buildpack
-    path: /home/ubuntu/new_project/frontend
+    path: ./frontend
     env:
       REACT_APP_API_URL: "https://my-postgres-app.cfapps.us10-001.hana.ondemand.com"
