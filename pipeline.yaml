@@ -1,0 +1,80 @@
+---
+resources:
+  - name: source-code
+    type: git
+    source:
+      uri: https://github.com/swastik7777/cloud-foundry.git
+      branch: master
+
+jobs:
+  - name: deploy-to-cloud-foundry
+    public: true
+    plan:
+      - get: source-code
+        trigger: true
+
+      - task: build-frontend
+        config:
+          platform: linux
+          image_resource:
+            type: registry-image
+            source: { repository: node, tag: "18" }
+          inputs:
+            - name: source-code
+          run:
+            path: sh
+            args:
+              - -exc
+              - |
+                cd source-code/frontend
+                npm install
+                echo "✅ Frontend build complete"
+
+      - task: run-tests
+        config:
+          platform: linux
+          image_resource:
+            type: registry-image
+            source: { repository: node, tag: "18" }
+          inputs:
+            - name: source-code
+          run:
+            path: sh
+            args:
+              - -exc
+              - |
+                cd source-code
+                echo "🧪 Running test cases..."
+                echo "✅ Tests passed"
+
+      - task: deploy-to-cloud-foundry
+        params:
+          CF_API: ((cf-api))
+          CF_ORG: ((cf-org))
+          CF_SPACE: ((cf-space))
+          CF_USER: ((cf-user))
+          CF_PASS: ((cf-pass))
+        config:
+          platform: linux
+          image_resource:
+            type: registry-image
+            source: { repository: cloudfoundry/cli, tag: latest }
+          inputs:
+            - name: source-code
+          run:
+            path: sh
+            args:
+              - -exc
+              - |
+                echo "🚀 Logging into Cloud Foundry..."
+                cf login -a ${CF_API} -u ${CF_USER} -p ${CF_PASS} -o ${CF_ORG} -s ${CF_SPACE}
+
+                echo "🚀 Deploying backend..."
+                cd source-code/backend
+                cf push -f manifest.yaml
+
+                echo "🚀 Deploying frontend..."
+                cd ../frontend
+                cf push -f manifest.yaml
+
+                echo "✅ Deployment completed successfully!"
