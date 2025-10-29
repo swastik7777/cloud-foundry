@@ -6,3 +6,5 @@ nginx -p /home/vcap/app/nginx -c /home/vcap/app/nginx/conf/nginx.conf
 
 
 
+
+
