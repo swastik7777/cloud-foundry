@@ -6,4 +6,4 @@ applications:
       - staticfile_buildpack
     path: .
     env:
-      REACT_APP_API_URL: "my-backend-app.cfapps.us10-001.hana.ondemand.com"
+      REACT_APP_API_URL: "https://my-backend-app.cfapps.us10-001.hana.ondemand.com"
