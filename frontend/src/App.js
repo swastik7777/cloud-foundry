@@ -6,7 +6,7 @@ function App() {
 
   useEffect(() => {
     // Make GET request to backend
-    axios.get('https://my-postgres-app.cfapps.us10-001.hana.ondemand.com/api/hello')
+    axios.get('https://my-frontend-app.cfapps.us10-001.hana.ondemand.com/api/hello')
       .then(response => {
         // Set the response message
         setMessage(response.data.message);
