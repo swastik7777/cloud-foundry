@@ -1,6 +1,6 @@
 ---
 applications:
-  - name: my-postgres-app
+  - name: my-backend-app
     memory: 512M
     instances: 1
     buildpacks:
